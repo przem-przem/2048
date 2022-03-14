@@ -532,6 +532,12 @@ const setupInput = ()=>{
         once: true
     });
 };
+const setupInputTouchScreens = ()=>{
+    window.addEventListener("touchmove", function(ev) {
+        alert(prevScrollPos - ev.changedTouches[0].clientY);
+        prevScrollPos = ev.changedTouches[0].clientY;
+    });
+};
 const handlerInput = async (e)=>{
     switch(e.key){
         case "ArrowUp":
@@ -648,37 +654,7 @@ grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
 grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
 setupInput();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Grid.js":"irQ6N","./Cell.js":"6LzwN","./Tile.js":"kElux"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"irQ6N":[function(require,module,exports) {
+},{"./Grid.js":"irQ6N","./Cell.js":"6LzwN","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"irQ6N":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _cellJs = require("./Cell.js");
@@ -734,7 +710,7 @@ const createCellElement = (gridElement)=>{
     return cells;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Cell.js":"6LzwN"}],"6LzwN":[function(require,module,exports) {
+},{"./Cell.js":"6LzwN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6LzwN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class Cell {
@@ -784,7 +760,37 @@ class Cell {
 }
 exports.default = Cell;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kElux":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"kElux":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class Tile {

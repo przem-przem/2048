@@ -12,6 +12,15 @@ const setupInput = () => {
   window.addEventListener("keydown", handlerInput, {once: true});
 }
 
+const setupInputTouchScreens = () => {
+  window.addEventListener("touchmove", function (ev){
+
+    alert(prevScrollPos - ev.changedTouches[0].clientY);
+    prevScrollPos = ev.changedTouches[0].clientY;
+
+  })
+}
+
 
 
 const handlerInput = async e => {
@@ -157,8 +166,8 @@ const canMove = cells => {
 const grid = new Grid(gameBoard);
 
 
-grid.randomEmptyCell().tile = new Tile (gameBoard);
-grid.randomEmptyCell().tile = new Tile (gameBoard);
+grid.randomEmptyCell().tile = new Tile(gameBoard);
+grid.randomEmptyCell().tile = new Tile(gameBoard);
 
 
 setupInput();
