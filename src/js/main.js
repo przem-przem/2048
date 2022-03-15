@@ -12,6 +12,23 @@ const setupInput = () => {
   window.addEventListener("keydown", handlerInput, {once: true});
 }
 
+let touches = [];
+
+gameBoard.addEventListener("touchstart", function (ev) {
+  touches.push(ev.changedTouches[0].screenY);
+  console.log(touches);
+})
+
+gameBoard.addEventListener("touchend", function (ev) {
+  touches.push(ev.changedTouches[0].screenY);
+  console.log(touches);
+})
+
+
+//const determineTouchDirection
+
+
+
 const setupInputTouchScreens = () => {
   window.addEventListener("touchmove", function (ev){
 

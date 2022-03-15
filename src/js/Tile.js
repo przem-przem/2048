@@ -1,3 +1,6 @@
+const tileColors = ['#a7d0cd', '#b8c0b8', '#bfb2a7', '#c1a49a', '#bf988f', '#b98c86', '#b18180', '#a7787c', '#9a6f7a', '#8c6779', '#7b6079']
+
+
 export default class Tile {
   #tileElement
   #x
@@ -32,15 +35,17 @@ export default class Tile {
     this.#value = v;
     this.#tileElement.textContent = v;
     const power = Math.log2(v);
-    const backgroundLightness = 100 - power * 9;
+    const index = Math.floor(power);
     this.#tileElement.style.setProperty(
-      "--background-lightness",
-      `${backgroundLightness}%`
+      "background-color",
+      tileColors[index-1]
     );
-    this.#tileElement.style.setProperty(
-      "--text-lightness",
-      `${backgroundLightness <= 50 ? 90 : 10}%`
-    );
+    if (index >= 8){
+      this.#tileElement.style.setProperty(
+       "color",
+        "#F5F5F5"
+      );
+    }
   }
 
   remove() {

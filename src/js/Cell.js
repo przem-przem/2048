@@ -1,3 +1,6 @@
+let SCORE = 0;
+const scoreElement = document.getElementById("score");
+
 export default class Cell {
   #cellElement
   #x
@@ -49,7 +52,18 @@ export default class Cell {
   mergeTiles() {
     if(this.mergeTile == null || this.tile == null) return;
     this.tile.value = this.tile.value + this.mergeTile.value;
+    if (typeof this.tile.value == "number"){
+      updateScore(this.tile.value);
+    }
+
     this.mergeTile.remove();
     this.mergeTile = null;
   }
+}
+
+
+
+const updateScore = (value) => {
+  SCORE = SCORE + value;
+  scoreElement.innerHTML = `Score:  ${SCORE}`;
 }

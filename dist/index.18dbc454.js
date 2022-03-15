@@ -532,6 +532,16 @@ const setupInput = ()=>{
         once: true
     });
 };
+let touches = [];
+gameBoard.addEventListener("touchstart", function(ev) {
+    touches.push(ev.changedTouches[0].screenY);
+    console.log(touches);
+});
+gameBoard.addEventListener("touchend", function(ev) {
+    touches.push(ev.changedTouches[0].screenY);
+    console.log(touches);
+});
+//const determineTouchDirection
 const setupInputTouchScreens = ()=>{
     window.addEventListener("touchmove", function(ev) {
         alert(prevScrollPos - ev.changedTouches[0].clientY);
@@ -660,7 +670,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _cellJs = require("./Cell.js");
 var _cellJsDefault = parcelHelpers.interopDefault(_cellJs);
 const GRID_SIZE = 4;
-const CELL_SIZE = 20;
+const CELL_SIZE = 15;
 const CELL_GAP = 2;
 class Grid {
     #cells;
@@ -713,6 +723,8 @@ const createCellElement = (gridElement)=>{
 },{"./Cell.js":"6LzwN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6LzwN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+let SCORE = 0;
+const scoreElement = document.getElementById("score");
 class Cell {
     #cellElement;
     #x;
@@ -754,11 +766,16 @@ class Cell {
     mergeTiles() {
         if (this.mergeTile == null || this.tile == null) return;
         this.tile.value = this.tile.value + this.mergeTile.value;
+        if (typeof this.tile.value == "number") updateScore(this.tile.value);
         this.mergeTile.remove();
         this.mergeTile = null;
     }
 }
 exports.default = Cell;
+const updateScore = (value)=>{
+    SCORE = SCORE + value;
+    scoreElement.innerHTML = `Score:  ${SCORE}`;
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -793,6 +810,19 @@ exports.export = function(dest, destName, get) {
 },{}],"kElux":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+const tileColors = [
+    '#a7d0cd',
+    '#b8c0b8',
+    '#bfb2a7',
+    '#c1a49a',
+    '#bf988f',
+    '#b98c86',
+    '#b18180',
+    '#a7787c',
+    '#9a6f7a',
+    '#8c6779',
+    '#7b6079'
+];
 class Tile {
     #tileElement;
     #x;
@@ -819,9 +849,9 @@ class Tile {
         this.#value = v;
         this.#tileElement.textContent = v;
         const power = Math.log2(v);
-        const backgroundLightness = 100 - power * 9;
-        this.#tileElement.style.setProperty("--background-lightness", `${backgroundLightness}%`);
-        this.#tileElement.style.setProperty("--text-lightness", `${backgroundLightness <= 50 ? 90 : 10}%`);
+        const index = Math.floor(power);
+        this.#tileElement.style.setProperty("background-color", tileColors[index - 1]);
+        if (index >= 8) this.#tileElement.style.setProperty("color", "#F5F5F5");
     }
     remove() {
         this.#tileElement.remove();
