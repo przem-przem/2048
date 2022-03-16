@@ -12,36 +12,64 @@ const setupInput = () => {
   window.addEventListener("keydown", handlerInput, {once: true});
 }
 
-let touches = [];
+let touches = [[], []];
 
 gameBoard.addEventListener("touchstart", function (ev) {
-  touches.push(ev.changedTouches[0].screenY);
-  console.log(touches);
+  touches[0].push(ev.changedTouches[0].screenX);
+  touches[1].push(ev.changedTouches[0].screenY);
 })
 
 gameBoard.addEventListener("touchend", function (ev) {
-  touches.push(ev.changedTouches[0].screenY);
-  console.log(touches);
+  touches[0].push(ev.changedTouches[0].screenX);
+  touches[1].push(ev.changedTouches[0].screenY);
+  const direction = determineTouchDirection();
+  handlerInput(direction);
 })
 
 
-//const determineTouchDirection
+const determineTouchDirection = () => {
+  console.log(touches[0]);
+  console.log(touches[1]);
 
+  /* Distance in X direction */
+  const distanceX = touches[0][1] - touches [0][0];
+  console.log(distanceX);
 
+  /* Distance in Y direction */
+  const distanceY = touches[1][1] - touches [1][0];
+  console.log(distanceY);
 
-const setupInputTouchScreens = () => {
-  window.addEventListener("touchmove", function (ev){
+  /* if Y distance is bigger than X distance, then vertical direction */
+  if (Math.abs(distanceX) > Math.abs(distanceY)){
 
-    alert(prevScrollPos - ev.changedTouches[0].clientY);
-    prevScrollPos = ev.changedTouches[0].clientY;
+    if (distanceX > 0) return "ArrowRight";
+    else return "ArrowLeft";
 
-  })
+  } else {
+
+    if (distanceY > 0) return "ArrowDown";
+    else return "ArrowUp";
+
+  }
+
 }
 
 
-
 const handlerInput = async e => {
-  switch (e.key){
+
+  let direction;
+
+
+  if (typeof e == "object"){
+    direction = e.key;
+  } else if (typeof e == "string"){
+    direction = e;
+  }
+
+  console.log(direction);
+
+
+  switch (direction){
     case "ArrowUp":
     if (!canMoveUp()){
       setupInput();
@@ -87,6 +115,8 @@ const handlerInput = async e => {
   grid.cells.forEach(cell => cell.mergeTiles());
   const newTile = new Tile(gameBoard);
   grid.randomEmptyCell().tile = newTile;
+
+  touches = [[], []];
 
 
   if(!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()){

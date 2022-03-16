@@ -21,14 +21,26 @@ nav {
 }
 
 
-.scoreTitle {
+.title {
   font-size: 10vmin;
 }
 
-.scoreValue {
+
+.title::selection {
+  color: #F5F5F5;
+  background-color: black;
+}
+
+
+.score {
   margin: 3vmin;
   text-align: center;
   font-size: 4vmin;
+}
+
+.score::selection {
+  color: #F5F5F5;
+  background-color: black;
 }
 
 
