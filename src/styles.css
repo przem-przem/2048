@@ -17,6 +17,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 375px;
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
@@ -46,6 +47,7 @@ nav {
 
 
 .score {
+  display: none;
   margin: 3vmin;
   text-align: center;
   font-size: 6vmin;
@@ -65,8 +67,8 @@ nav {
 
 
 
-.main {
-  display: grid;
+.main--game {
+  display: none;
   grid-template-rows: repeat(var(--grid-size), var(--cell-size));
   grid-template-columns: repeat(var(--grid-size), var(--cell-size));
   background-color: #F5F5F5;
@@ -76,6 +78,83 @@ nav {
   box-shadow: inset 0 0 25px 10px #d2d2d2;
   position: relative;
 }
+
+
+.main--starter {
+  text-align: center;
+  margin: 16vmin 8vmin;
+  position: relative;
+}
+
+.startGameIcon {
+  margin: 6vmin;
+  animation: bounce 2000ms infinite;
+}
+
+.tapToStart {
+  margin: 4vmin;
+}
+
+
+.settingsButton {
+  background-color: inherit;
+  border: none;
+  margin-bottom: 6vmin;
+  font-size: 4vmin;
+}
+
+.settings {
+  text-align: left;
+  width: 100%;
+  padding: 6vmin;
+  border-radius: 3vmin;
+  box-shadow: 0 0 25px 10px #d2d2d2;
+  background-color: #F5F5F5;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.settings__topbar {
+  margin-bottom: 12vmin;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings__title {
+  font-size: 6vmin;
+  margin-bottom: 2vmin;
+}
+
+.settings__setting {
+  margin: 6vmin 0;
+}
+
+.settings input[type=radio] {
+  margin-right: 3vmin;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  background-color: #F5F5F5;
+  border: 3px solid black;
+}
+
+
+.settings input[type=radio]:checked {
+  border-radius: 100%;
+  color: black;
+  width: 10px;
+  height: 10px;
+}
+
+.settings__radioOption {
+  display: flex;
+  align-items: center;
+}
+
 
 .cell {
   background-color: #aaa;
@@ -106,5 +185,17 @@ nav {
   0% {
     opacity: 0.5;
     transform: scale(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
   }
 }
