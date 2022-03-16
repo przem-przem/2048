@@ -1,1 +1,81 @@
-<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale= 1.0"><link rel="stylesheet" href="/index.f576b0cd.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet"><title>2048 Game</title></head><body> <nav> <h1 class="title">2048</h1> <h2 id="score" class="score">Score: 0</h2> </nav> <main id="game-board" class="main"> </main> </body><script src="/index.20c6d3fe.js" type="module"></script></html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="stylesheet" href="/index.4d663569.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/232e89c80e.js" crossorigin="anonymous"></script>
+    <title>2048 Game</title>
+  </head>
+  <body>
+    <nav>
+      <h1 class="title">2048</h1>
+      <h2 id="score" class="score">Score:  0</h2>
+    </nav>
+
+    <main id="game-board" class="main--game">
+    </main>
+
+    <main id="starter-board" class="main--starter">
+
+      <div id="tapToStart" class="tapToStart">
+        <p>Tap here to start the game</p>
+        <span class="fa-solid fa-play startGameIcon"></span>
+      </div>
+
+      <button id="openSettings" class="settingsButton">
+        <i class="fa-solid fa-gears"></i>
+        <u>Change settings</u>
+      </button>
+
+      <section class="settings">
+        <div class="settings__topbar">
+          <h2>Settings</h2>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="settings__setting">
+
+          <h3 class="settings__title">Grid size:</h3>
+          <div class="settings__radioOption">
+            <input type="radio" id="3" name="gridSize" value="3">
+            <label for="3">3x3</label>
+          </div>
+          <div class="settings__radioOption">
+            <input type="radio" id="4" name="gridSize" value="4">
+            <label for="4">4x4</label>
+          </div>
+          <div class="settings__radioOption">
+            <input type="radio" id="5" name="gridSize" value="5">
+            <label for="5">5x5</label>            
+          </div>
+
+
+
+
+        </div>
+        <div class="settings__setting">
+
+          <h3 class="settings__title">Base number:</h3>
+          <label for="baseNumber">2</label>
+          <input type="range" min="1" max="10" step="1" name="baseNumber" value="2">
+          <label for="baseNumber">10</label>
+
+        </div>
+        <div class="settings__setting">
+
+          <h3 class="settings__title">Dark mode:</h3>
+
+
+        </div>
+
+
+      </section>
+
+    </main>
+  </body>
+  <script src="/index.18dbc454.js" defer=""></script>
+</html>
