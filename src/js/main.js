@@ -1,6 +1,8 @@
 import Grid from "./Grid.js";
 import Cell from "./Cell.js";
 import Tile from "./Tile.js";
+import InputHandler from "./InputHandler.js";
+import Settings from "./Settings.js";
 
 
 
