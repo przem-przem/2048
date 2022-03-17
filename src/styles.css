@@ -131,23 +131,32 @@ nav {
   margin: 6vmin 0;
 }
 
-.settings input[type=radio] {
+input[type=radio] {
   margin-right: 3vmin;
   -webkit-appearance: none;
   appearance: none;
-  border-radius: 100%;
+  border-radius: 50%;
   width: 20px;
   height: 20px;
   background-color: #F5F5F5;
-  border: 3px solid black;
+  border: 2px solid black;
+  display: grid;
+  place-content: center;
+}
+
+input[type=radio]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 10px 10px black;
 }
 
 
-.settings input[type=radio]:checked {
-  border-radius: 100%;
-  color: black;
-  width: 10px;
-  height: 10px;
+input[type=radio]:checked::before {
+  transform: scale(1);
 }
 
 .settings__radioOption {
