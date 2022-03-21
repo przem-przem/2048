@@ -16,15 +16,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   min-width: 375px;
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
-  font-size: 6.5vmin;
 }
 
 nav {
+  margin-top: 4rem;
   text-align: center;
 }
 
@@ -47,7 +46,6 @@ nav {
 
 
 .score {
-  display: none;
   margin: 3vmin;
   text-align: center;
   font-size: 6vmin;
@@ -64,11 +62,15 @@ nav {
   background-color: black;
 }
 
-
-
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .main--game {
-  display: none;
+  display: grid;
   grid-template-rows: repeat(var(--grid-size), var(--cell-size));
   grid-template-columns: repeat(var(--grid-size), var(--cell-size));
   background-color: #F5F5F5;
@@ -82,8 +84,11 @@ nav {
 
 .main--starter {
   text-align: center;
-  margin: 16vmin 8vmin;
+  margin: 4rem 2rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .startGameIcon {
@@ -92,27 +97,40 @@ nav {
 }
 
 .tapToStart {
-  margin: 4vmin;
+  margin: 3rem;
+}
+
+.tapToStart__text {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 
-.settingsButton {
+.openSettingsButton {
   background-color: inherit;
   border: none;
   margin-bottom: 6vmin;
   font-size: 4vmin;
+  cursor: pointer;
 }
 
-.settings {
+.openSettingsButton__text {
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.main--settings {
   text-align: left;
   width: 100%;
-  padding: 6vmin;
+  padding: 2rem;
   border-radius: 3vmin;
   box-shadow: 0 0 25px 10px #d2d2d2;
   background-color: #F5F5F5;
-  position: absolute;
-  top: 0;
   z-index: 1;
+  min-width: 350px;
+  max-width: 700px;
 }
 
 .settings__topbar {
@@ -121,13 +139,29 @@ nav {
   align-items: center;
 }
 
+.closeSettingsButton {
+  cursor: pointer;
+}
+
+.settings__mainTitle {
+  font-size: 3rem;
+}
+
 .settings__title {
-  font-size: 2rem;;
-  margin-bottom: 2vmin;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.settings__title--rangeInput {
+  margin-bottom: 1.5rem;
 }
 
 .settings__setting {
-  margin: 8vmin 0;
+  margin: 2.5rem 0;
+}
+
+.settings__setting--rangeInput {
+  margin-bottom: 5rem;
 }
 
 .settings__radioOption {
@@ -172,13 +206,15 @@ input[type=radio]:checked::before {
 .settings__rangeInput {
   position: relative;
   display: flex;
-  justify-content: start;;
+  justify-content: start;
   align-items: center;
 }
 
-.rangeInput__label {
-  position: relative;
-  margin-bottom: 30px;
+.rangeInput__output {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  font-size: 1.5rem;
 }
 
 
@@ -220,12 +256,6 @@ input[type="range"]::-webkit-slider-runnable-track::before {
   color: red;
   overflow: hidden;
   z-index: 2;
-}
-
-.rangeBubble {
-  position: absolute;
-  top: 40px;
-  left: 0;
 }
 
 
@@ -316,6 +346,10 @@ input[type="checkbox"]:checked ~ .setting__checkbox::after {
   color: #062C30;
   animation: show 200ms ease-in-out;
   transition: 100ms ease-in-out;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes show {

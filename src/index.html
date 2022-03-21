@@ -13,28 +13,34 @@
   <body>
     <nav>
       <h1 class="title">2048</h1>
-      <h2 id="score" class="score">Score:  0</h2>
+      <h2 id="score" class="score hidden">Score: 0</h2>
     </nav>
 
-    <main id="game-board" class="main--game">
+    <main id="main" class="main hidden">
+      <div id="game-board" class="main--game">
+
+      </div>
+
+      </div>
     </main>
 
     <main id="starter-board" class="main--starter">
 
       <div id="tapToStart" class="tapToStart">
-        <p>Tap here to start the game</p>
-        <span class="fa-solid fa-play startGameIcon"></span>
+        <p class="tapToStart__text">Tap here to start the game</p>
+        <h3 class="fa-solid fa-play fa-2xl startGameIcon"></h3>
       </div>
 
-      <button id="openSettings" class="settingsButton">
-        <i class="fa-solid fa-gears"></i>
-        <u>Change settings</u>
+      <button id="openSettings" class="openSettingsButton">
+        <span class="fa-solid fa-gear fa-xs"></span>
+        <h4 class="openSettingsButton__text">Change settings<h4>
       </button>
 
-      <section class="settings">
+      <section id="settings-board" class="main--settings hidden">
+
         <div class="settings__topbar">
-          <h2>Settings</h2>
-          <i class="fa-solid fa-xmark"></i>
+          <h2 class="settings__mainTitle">Settings</h2>
+          <span id="closeSettings" class="fa-solid fa-xmark fa-xl closeSettingsButton"></span>
         </div>
 
         <div class="settings__setting">
@@ -57,18 +63,14 @@
 
 
         </div>
-        <div class="settings__setting">
+        <div class="settings__setting settings__setting--rangeInput">
 
-          <h3 class="settings__title">Base number:</h3>
+          <h3 class="settings__title settings__title--rangeInput">Base number:</h3>
 
-          <div class="settings__rangeInput">
-            <label class="rangeInput__label" for="baseNumber">
-              <input id="rangeInput" type="range" min="1" max="10" step="1" name="baseNumber" value="2">
-              <output id="rangeBubble" class="rangeBubble" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
-            </label>
-
-
-          </div>
+          <label class="settings__rangeInput" for="baseNumber">
+            <input id="rangeInput" type="range" min="1" max="10" step="1" name="baseNumber" value="2">
+            <output id="rangeBubble" class="rangeInput__output" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
+          </label>
 
 
         </div>
@@ -84,25 +86,14 @@
 
         </div>
 
-
       </section>
 
     </main>
+
+
+
+
+
   </body>
-  <script type="text/javascript">
-
-    const rangeInput = document.getElementById('rangeInput');
-    const bubble = document.getElementById('rangeBubble');
-
-    const calcPositionX = (rangeInput.offsetWidth / 10) * rangeInput.value - (rangeInput.offsetWidth / 10);
-    bubble.style.left = `${calcPositionX}px`;
-
-    rangeInput.addEventListener("input", () => {
-      bubble.innerHTML = rangeInput.value;
-      const calcPositionX = (rangeInput.offsetWidth / 10) * rangeInput.value - (rangeInput.offsetWidth / 10);
-      bubble.style.left = `${calcPositionX}px`;
-    })
-
-  </script>
-  <!-- <script src="./js/main.js" type="module"></script> -->
+  <script src="./js/main.js" type="module"></script>
 </html>
