@@ -42,15 +42,15 @@
           <h3 class="settings__title">Grid size:</h3>
           <div class="settings__radioOption">
             <input type="radio" id="3" name="gridSize" value="3">
-            <label for="3">3x3</label>
+            <label class="radioOption__label" for="3">3x3</label>
           </div>
           <div class="settings__radioOption">
-            <input type="radio" id="4" name="gridSize" value="4">
-            <label for="4">4x4</label>
+            <input type="radio" id="4" name="gridSize" value="4" checked="">
+            <label class="radioOption__label" for="4">4x4</label>
           </div>
           <div class="settings__radioOption">
             <input type="radio" id="5" name="gridSize" value="5">
-            <label for="5">5x5</label>            
+            <label class="radioOption__label" for="5">5x5</label>
           </div>
 
 
@@ -60,14 +60,26 @@
         <div class="settings__setting">
 
           <h3 class="settings__title">Base number:</h3>
-          <label for="baseNumber">2</label>
-          <input type="range" min="1" max="10" step="1" name="baseNumber" value="2">
-          <label for="baseNumber">10</label>
+
+          <div class="settings__rangeInput">
+
+              <input id="rangeInput" type="range" min="1" max="10" step="1" value="2">
+              <output id="rangeBubble" class="rangeBubble" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
+
+
+
+          </div>
+
 
         </div>
         <div class="settings__setting">
 
           <h3 class="settings__title">Dark mode:</h3>
+          <div class="settings__darkMode">
+            <label class="settings__darkModeState">Off</label>
+            <input type="checkbox">
+            <span class="setting__checkbox"></span>
+          </div>
 
 
         </div>
@@ -77,5 +89,16 @@
 
     </main>
   </body>
-  <script src="/index.18dbc454.js" defer=""></script>
+  <script type="text/javascript">const rangeInput = document.getElementById('rangeInput');
+const bubble = document.getElementById('rangeBubble');
+const calcPositionX = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
+bubble.style.left = `${calcPositionX}px`;
+rangeInput.addEventListener("input", ()=>{
+    bubble.innerHTML = rangeInput.value;
+    const calcPositionX1 = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
+    bubble.style.left = `${calcPositionX1}px`;
+});
+
+</script>
+  <!-- <script src="./js/main.js" type="module"></script> -->
 </html>
