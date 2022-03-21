@@ -152,16 +152,12 @@ nav {
   margin-bottom: 1rem;
 }
 
-.settings__title--rangeInput {
-  margin-bottom: 1.5rem;
-}
-
 .settings__setting {
-  margin: 2.5rem 0;
+  margin: 3rem 0;
 }
 
-.settings__setting--rangeInput {
-  margin-bottom: 5rem;
+.settings__setting:last-of-type {
+  margin-bottom: 0;
 }
 
 .settings__radioOption {
@@ -208,14 +204,10 @@ input[type=radio]:checked::before {
   display: flex;
   justify-content: start;
   align-items: center;
+  margin: 2rem 0 5rem;
 }
 
-.rangeInput__output {
-  position: absolute;
-  top: 25px;
-  left: 0;
-  font-size: 1.5rem;
-}
+
 
 
 input[type="range"] {
@@ -259,12 +251,21 @@ input[type="range"]::-webkit-slider-runnable-track::before {
 }
 
 
-.settings__darkMode {
+.rangeBubble {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  font-size: 1.5rem;
+}
 
+.settings__darkMode {
+  display: flex;
+  align-items: center;
 }
 
 
 .settings__darkModeState {
+  margin-right: 1rem;
   font-size: 1.5rem;
 }
 

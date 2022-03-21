@@ -65,23 +65,21 @@
         </div>
         <div class="settings__setting settings__setting--rangeInput">
 
-          <h3 class="settings__title settings__title--rangeInput">Base number:</h3>
+          <div class="settings__rangeInput">
 
-          <label class="settings__rangeInput" for="baseNumber">
-            <input id="rangeInput" type="range" min="1" max="10" step="1" name="baseNumber" value="2">
-            <output id="rangeBubble" class="rangeInput__output" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
-          </label>
+              <input id="rangeInput" type="range" min="1" max="10" step="1" value="2">
+              <output id="rangeBubble" class="rangeBubble" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
 
 
         </div>
         <div class="settings__setting">
 
           <h3 class="settings__title">Dark mode:</h3>
-          <label class="settings__darkMode">
-            <span class="settings__darkModeState">Off</span>
+          <div class="settings__darkMode">
+            <label class="settings__darkModeState">Off</label>
             <input type="checkbox">
             <span class="setting__checkbox"></span>
-          </label>
+          </div>
 
 
         </div>
