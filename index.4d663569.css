@@ -236,19 +236,6 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: -8px;
 }
 
-input[type="range"]::-webkit-slider-runnable-track::before {
-  content: '';
-  top: 0;
-  left: 0;
-  position: absolute;
-  display: block;
-  width: 30px;
-  height: 30px;
-  background-color: blue;
-  color: red;
-  overflow: hidden;
-  z-index: 2;
-}
 
 
 .rangeBubble {
@@ -337,6 +324,7 @@ input[type="checkbox"]:checked ~ .setting__checkbox::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 6.5vmin;
   font-weight: bold;
   border-radius: 6vmin;
   width: var(--cell-size);
