@@ -523,11 +523,11 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gameBoard", ()=>gameBoard
 );
+parcelHelpers.export(exports, "grid", ()=>grid
+);
 parcelHelpers.export(exports, "setupInput", ()=>setupInput
 );
 parcelHelpers.export(exports, "touches", ()=>touches
-);
-parcelHelpers.export(exports, "grid", ()=>grid
 );
 var _gridJs = require("./Grid.js");
 var _gridJsDefault = parcelHelpers.interopDefault(_gridJs);
@@ -536,7 +536,48 @@ var _cellJsDefault = parcelHelpers.interopDefault(_cellJs);
 var _tileJs = require("./Tile.js");
 var _tileJsDefault = parcelHelpers.interopDefault(_tileJs);
 var _inputHandlerJs = require("./InputHandler.js");
+var _settingsJs = require("./Settings.js");
+const main = document.getElementById("main");
 const gameBoard = document.getElementById("game-board");
+const rangeInput = document.getElementById('rangeInput');
+const openSettingsButton = document.getElementById('openSettings');
+const closeSettingsButton = document.getElementById('closeSettings');
+const tapToStart = document.getElementById('tapToStart');
+const settingsBoard = document.getElementById('settings-board');
+const score = document.getElementById("score");
+const hiddenClass = "hidden";
+const grid = new _gridJsDefault.default(gameBoard);
+/* Open settings board */ openSettingsButton.addEventListener("click", function() {
+    settingsBoard.classList.toggle(hiddenClass);
+    tapToStart.classList.toggle(hiddenClass);
+    openSettingsButton.classList.toggle(hiddenClass);
+    _settingsJs.setRangeBubble();
+});
+/* Close settings board */ closeSettingsButton.addEventListener("click", function() {
+    settingsBoard.classList.toggle(hiddenClass);
+    tapToStart.classList.toggle(hiddenClass);
+    openSettingsButton.classList.toggle(hiddenClass);
+});
+/* Start the game when clicking */ tapToStart.addEventListener("click", function() {
+    openSettingsButton.classList.toggle(hiddenClass);
+    tapToStart.classList.toggle(hiddenClass);
+    main.classList.toggle(hiddenClass);
+    score.classList.toggle(hiddenClass);
+    grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
+    grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
+    setupInput();
+});
+/* Starts the game when pressing Space button */ window.addEventListener("keyup", (e)=>{
+    if (e.code == "Space" || e.code == "Enter") {
+        openSettingsButton.classList.toggle(hiddenClass);
+        tapToStart.classList.toggle(hiddenClass);
+        main.classList.toggle(hiddenClass);
+        score.classList.toggle(hiddenClass);
+        grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
+        grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
+        setupInput();
+    }
+});
 const setupInput = ()=>{
     window.addEventListener("keydown", _inputHandlerJs.handlerInput, {
         once: true
@@ -556,12 +597,8 @@ gameBoard.addEventListener("touchend", function(ev) {
     const direction = _inputHandlerJs.determineTouchDirection(touches);
     _inputHandlerJs.handlerInput(direction);
 });
-const grid = new _gridJsDefault.default(gameBoard);
-grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
-grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
-setupInput();
 
-},{"./Grid.js":"irQ6N","./Cell.js":"6LzwN","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./InputHandler.js":"2qFKw"}],"irQ6N":[function(require,module,exports) {
+},{"./Grid.js":"irQ6N","./Cell.js":"6LzwN","./Tile.js":"kElux","./InputHandler.js":"2qFKw","./Settings.js":"8wGYB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"irQ6N":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _cellJs = require("./Cell.js");
@@ -904,6 +941,19 @@ const canMove = (cells)=>{
     });
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main.js":"1SICI","./Grid.js":"irQ6N","./Tile.js":"kElux"}]},["g9TDx","1SICI"], "1SICI", "parcelRequire7b01")
+},{"./main.js":"1SICI","./Grid.js":"irQ6N","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8wGYB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "setRangeBubble", ()=>setRangeBubble
+);
+const rangeInput = document.getElementById('rangeInput');
+const bubble = document.getElementById('rangeBubble');
+const setRangeBubble = ()=>{
+    bubble.innerHTML = rangeInput.value;
+    const calcPositionX = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
+    bubble.style.left = `${calcPositionX}px`;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["g9TDx","1SICI"], "1SICI", "parcelRequire7b01")
 
 //# sourceMappingURL=index.18dbc454.js.map
