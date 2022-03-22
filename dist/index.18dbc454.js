@@ -539,14 +539,18 @@ var _inputHandlerJs = require("./InputHandler.js");
 var _settingsJs = require("./Settings.js");
 const main = document.getElementById("main");
 const gameBoard = document.getElementById("game-board");
+const radioGridButtons = Array.from(document.querySelectorAll('input[name="gridSize"]'));
 const rangeInput = document.getElementById('rangeInput');
+const bubble = document.getElementById('rangeBubble');
 const openSettingsButton = document.getElementById('openSettings');
 const closeSettingsButton = document.getElementById('closeSettings');
 const tapToStart = document.getElementById('tapToStart');
 const settingsBoard = document.getElementById('settings-board');
 const score = document.getElementById("score");
 const hiddenClass = "hidden";
-const grid = new _gridJsDefault.default(gameBoard);
+let grid = '';
+let gridSize = 4;
+let cellSize = 15;
 /* Open settings board */ openSettingsButton.addEventListener("click", function() {
     settingsBoard.classList.toggle(hiddenClass);
     tapToStart.classList.toggle(hiddenClass);
@@ -563,6 +567,7 @@ const grid = new _gridJsDefault.default(gameBoard);
     tapToStart.classList.toggle(hiddenClass);
     main.classList.toggle(hiddenClass);
     score.classList.toggle(hiddenClass);
+    grid = new _gridJsDefault.default(gameBoard, gridSize);
     grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
     grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
     setupInput();
@@ -573,10 +578,23 @@ const grid = new _gridJsDefault.default(gameBoard);
         tapToStart.classList.toggle(hiddenClass);
         main.classList.toggle(hiddenClass);
         score.classList.toggle(hiddenClass);
+        grid = new _gridJsDefault.default(gameBoard);
         grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
         grid.randomEmptyCell().tile = new _tileJsDefault.default(gameBoard);
         setupInput();
     }
+});
+/* Update value and move slider thumb */ rangeInput.addEventListener("input", ()=>{
+    bubble.innerHTML = rangeInput.value;
+    const calcPositionX1 = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
+    bubble.style.left = `${calcPositionX1}px`;
+});
+for (let radio of radioGridButtons)radio.addEventListener("click", (e)=>{
+    console.log(radio);
+    console.log(radio.value);
+    gridSize = radio.value;
+    if (radio.value == 3) cellSize = 10;
+    else if (radio.value == 4) cellSize = 10;
 });
 const setupInput = ()=>{
     window.addEventListener("keydown", _inputHandlerJs.handlerInput, {
@@ -587,11 +605,11 @@ var touches = [
     [],
     []
 ];
-gameBoard.addEventListener("touchstart", function(ev) {
+/* Push XY coordinates of touchstart event */ gameBoard.addEventListener("touchstart", function(ev) {
     touches[0].push(ev.changedTouches[0].screenX);
     touches[1].push(ev.changedTouches[0].screenY);
 });
-gameBoard.addEventListener("touchend", function(ev) {
+/* Push XY coordinates of touchend event, determine direction and invoke handlerInput function */ gameBoard.addEventListener("touchend", function(ev) {
     touches[0].push(ev.changedTouches[0].screenX);
     touches[1].push(ev.changedTouches[0].screenY);
     const direction = _inputHandlerJs.determineTouchDirection(touches);
@@ -603,17 +621,16 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _cellJs = require("./Cell.js");
 var _cellJsDefault = parcelHelpers.interopDefault(_cellJs);
-const GRID_SIZE = 4;
 const CELL_SIZE = 15;
 const CELL_GAP = 2;
 class Grid {
     #cells;
-    constructor(gridElement){
-        gridElement.style.setProperty("--grid-size", GRID_SIZE);
+    constructor(gridElement, gridSize){
+        gridElement.style.setProperty("--grid-size", gridSize);
         gridElement.style.setProperty("--cell-size", `${CELL_SIZE}vmin`);
         gridElement.style.setProperty("--cell-gap", `${CELL_GAP}vmin`);
-        /* Creates the array of cell divs and maps into array of Cell objects */ this.#cells = createCellElement(gridElement).map((el, index)=>{
-            return new _cellJsDefault.default(el, index % GRID_SIZE, Math.floor(index / GRID_SIZE));
+        /* Creates the array of cell divs and maps into array of Cell objects */ this.#cells = createCellElement(gridElement, gridSize).map((el, index)=>{
+            return new _cellJsDefault.default(el, index % gridSize, Math.floor(index / gridSize));
         });
     }
     get cellsByColumn() {
@@ -643,9 +660,9 @@ class Grid {
     }
 }
 exports.default = Grid;
-const createCellElement = (gridElement)=>{
+const createCellElement = (gridElement, gridSize)=>{
     const cells = [];
-    for(let i = 0; i < GRID_SIZE * GRID_SIZE; i++){
+    for(let i = 0; i < gridSize * gridSize; i++){
         const cell = document.createElement("div");
         cell.classList.add("cell");
         cells.push(cell);
@@ -654,7 +671,37 @@ const createCellElement = (gridElement)=>{
     return cells;
 };
 
-},{"./Cell.js":"6LzwN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6LzwN":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Cell.js":"6LzwN"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"6LzwN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 let SCORE = 0;
@@ -711,37 +758,7 @@ const updateScore = (value)=>{
     scoreElement.innerHTML = `Score:  ${SCORE}`;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"kElux":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kElux":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const tileColors = [
