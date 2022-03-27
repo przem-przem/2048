@@ -1,7 +1,7 @@
 import {grid, gameBoard, setupInput, touches} from "./main2.js";
 import Grid from "./Grid.js";
 import Tile from "./Tile.js";
-
+import {lostGame} from "./EndgameHandler.js";
 
 
 
@@ -93,7 +93,7 @@ export const handlerInput = async e => {
 
   if(!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()){
     newTile.waitForTransition(true).then(() => {
-      alert("You lose");
+      lostGame();
     })
   } else {
     setupInput();

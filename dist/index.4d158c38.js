@@ -525,6 +525,10 @@ parcelHelpers.export(exports, "gameBoard", ()=>gameBoard
 );
 parcelHelpers.export(exports, "tile", ()=>tile
 );
+parcelHelpers.export(exports, "endGameBoard", ()=>endGameBoard
+);
+parcelHelpers.export(exports, "endgameScore", ()=>endgameScore
+);
 parcelHelpers.export(exports, "grid", ()=>grid
 );
 parcelHelpers.export(exports, "gridSize", ()=>gridSize
@@ -558,6 +562,8 @@ const settingsBoard = document.getElementById('settings-board');
 const starterBoard = document.getElementById('starter-board');
 const score = document.getElementById("score");
 const tile = document.getElementById("tile");
+const endGameBoard = document.getElementById("endgame__board");
+const endgameScore = document.getElementById("endgame__score");
 const hiddenClass = "hidden";
 let grid = '';
 let gridSize = 4;
@@ -697,6 +703,8 @@ const createCellElement = (gridElement, gridSize)=>{
 },{"./Cell.js":"6LzwN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main2.js":"1tWgD"}],"6LzwN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SCORE", ()=>SCORE
+);
 let SCORE = 0;
 const scoreElement = document.getElementById("score");
 class Cell {
@@ -865,6 +873,7 @@ var _gridJs = require("./Grid.js");
 var _gridJsDefault = parcelHelpers.interopDefault(_gridJs);
 var _tileJs = require("./Tile.js");
 var _tileJsDefault = parcelHelpers.interopDefault(_tileJs);
+var _endgameHandlerJs = require("./EndgameHandler.js");
 const determineTouchDirection = ()=>{
     /* Distance in X direction */ const distanceX = _main2Js.touches[0][1] - _main2Js.touches[0][0];
     /* Distance in Y direction */ const distanceY = _main2Js.touches[1][1] - _main2Js.touches[1][0];
@@ -920,7 +929,7 @@ const handlerInput = async (e)=>{
     _main2Js.touches[0].length = 0;
     _main2Js.touches[1].length = 1;
     if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) newTile.waitForTransition(true).then(()=>{
-        alert("You lose");
+        _endgameHandlerJs.lostGame();
     });
     else _main2Js.setupInput();
 };
@@ -994,7 +1003,19 @@ const canMove = (cells)=>{
     });
 };
 
-},{"./Grid.js":"irQ6N","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main2.js":"1tWgD"}],"8wGYB":[function(require,module,exports) {
+},{"./Grid.js":"irQ6N","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main2.js":"1tWgD","./EndgameHandler.js":"9H4G8"}],"9H4G8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "lostGame", ()=>lostGame
+);
+var _main2Js = require("./main2.js");
+var _cellJs = require("./Cell.js");
+const lostGame = ()=>{
+    _main2Js.endGameBoard.classList.remove(hiddenClass);
+    _main2Js.endgameScore.innerHTML = `Your score:  ${_cellJs.SCORE}`;
+};
+
+},{"./main2.js":"1tWgD","./Cell.js":"6LzwN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8wGYB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setRangeBubble", ()=>setRangeBubble

@@ -20,6 +20,8 @@ const settingsBoard = document.getElementById('settings-board');
 const starterBoard = document.getElementById('starter-board');
 const score = document.getElementById("score");
 export const tile = document.getElementById("tile");
+export const endGameBoard = document.getElementById("endgame__board");
+export const endgameScore = document.getElementById("endgame__score");
 const hiddenClass = "hidden";
 
 export let grid = '';

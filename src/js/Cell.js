@@ -1,4 +1,4 @@
-let SCORE = 0;
+export let SCORE = 0;
 const scoreElement = document.getElementById("score");
 
 export default class Cell {

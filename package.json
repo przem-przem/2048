@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/przem-przem/2048#readme",
   "devDependencies": {
-    "parcel": "^2.3.2"
+    "autoprefixer": "^10.4.4",
+    "parcel": "^2.3.2",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23"
   }
 }
