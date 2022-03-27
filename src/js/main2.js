@@ -8,6 +8,7 @@ import {setRangeBubble} from "./Settings.js";
 
 
 const main = document.getElementById("main");
+export const title = document.getElementById("title");
 export const gameBoard = document.getElementById("game-board");
 const radioGridButtons = Array.from(document.querySelectorAll('input[name="gridSize"]'));
 const baseNumberInput = Array.from(document.querySelectorAll('input[name="baseNumber"]'));
@@ -21,8 +22,9 @@ const starterBoard = document.getElementById('starter-board');
 const score = document.getElementById("score");
 export const tile = document.getElementById("tile");
 export const endGameBoard = document.getElementById("endgame__board");
+export const endGameTitle = document.getElementById("endgame__title");
 export const endgameScore = document.getElementById("endgame__score");
-const hiddenClass = "hidden";
+export const hiddenClass = "hidden";
 
 export let grid = '';
 
@@ -82,6 +84,8 @@ rangeInput.addEventListener("input", ()=>{
     bubble.innerHTML = rangeInput.value;
     const calcPositionX1 = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
     bubble.style.left = `${calcPositionX1}px`;
+    baseNumber = parseInt(rangeInput.value);
+    title.innerHTML = 1024*baseNumber;
 });
 
 
@@ -103,10 +107,7 @@ for (let radio of radioGridButtons){
 }
 
 
-for (let number of baseNumberInput){
-  number.addEventListener("input", e => {
-    baseNumber = parseInt(number.value);
-})}
+
 
 
 
@@ -119,13 +120,13 @@ export const setupInput = () => {
 export var touches = [[], []];
 
 /* Push XY coordinates of touchstart event */
-gameBoard.addEventListener("touchstart", function (ev) {
+window.addEventListener("touchstart", function (ev) {
   touches[0].push(ev.changedTouches[0].screenX);
   touches[1].push(ev.changedTouches[0].screenY);
 })
 
 /* Push XY coordinates of touchend event, determine direction and invoke handlerInput function */
-gameBoard.addEventListener("touchend", function (ev) {
+window.addEventListener("touchend", function (ev) {
   touches[0].push(ev.changedTouches[0].screenX);
   touches[1].push(ev.changedTouches[0].screenY);
   const direction = determineTouchDirection(touches);

@@ -58,7 +58,6 @@ export default class Tile {
       this.#tileElement.style.setProperty("font-size", "4vmin");
     }
 
-    console.log(  this.#tileElement.offsetHeight )
   }
 
   remove() {

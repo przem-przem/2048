@@ -1,7 +1,8 @@
-import {grid, gameBoard, setupInput, touches} from "./main2.js";
+import {grid, gameBoard, setupInput, touches, endGameBoard, hiddenClass} from "./main2.js";
 import Grid from "./Grid.js";
 import Tile from "./Tile.js";
-import {lostGame} from "./EndgameHandler.js";
+import {endGame, endGameScoreUpdate} from "./EndgameHandler.js";
+import {SCORE} from "./Cell.js";
 
 
 
@@ -84,6 +85,12 @@ export const handlerInput = async e => {
 
 
   grid.cells.forEach(cell => cell.mergeTiles());
+
+  if (!(endGameBoard.classList.contains(hiddenClass))){
+    endGameScoreUpdate();
+    return;
+  }
+
   const newTile = new Tile(gameBoard);
   grid.randomEmptyCell().tile = newTile;
 
@@ -93,7 +100,7 @@ export const handlerInput = async e => {
 
   if(!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()){
     newTile.waitForTransition(true).then(() => {
-      lostGame();
+      endGame(false);
     })
   } else {
     setupInput();
@@ -159,7 +166,6 @@ const canMoveDown = () => {
 }
 
 const canMoveLeft = () => {
-    console.log(grid);
   return canMove(grid.cellsByRow);
 }
 

@@ -1,3 +1,6 @@
+import {endGame} from "./EndgameHandler.js";
+import {title, baseNumber} from "./main2.js";
+
 export let SCORE = 0;
 const scoreElement = document.getElementById("score");
 
@@ -56,8 +59,14 @@ export default class Cell {
       updateScore(this.tile.value);
     }
 
+    if (this.tile.value == 1024 * baseNumber){
+      endGame(true);
+    }
+
     this.mergeTile.remove();
     this.mergeTile = null;
+
+
   }
 }
 
