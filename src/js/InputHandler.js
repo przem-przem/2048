@@ -1,4 +1,4 @@
-import {grid, gameBoard, setupInput, touches} from "./main.js";
+import {grid, gameBoard, setupInput, touches} from "./main2.js";
 import Grid from "./Grid.js";
 import Tile from "./Tile.js";
 

@@ -1,5 +1,5 @@
 const tileColors = ['#a7d0cd', '#b8c0b8', '#bfb2a7', '#c1a49a', '#bf988f', '#b98c86', '#b18180', '#a7787c', '#9a6f7a', '#8c6779', '#7b6079']
-
+import {tile, gridSize, baseNumber} from "./main2.js";
 
 export default class Tile {
   #tileElement
@@ -7,9 +7,10 @@ export default class Tile {
   #y
   #value
 
-  constructor (tileContainer, value = Math.random() > 0.5 ? 3 : 6){
+  constructor (tileContainer, value = Math.random() > 0.5 ? baseNumber : baseNumber * 2){
     this.#tileElement = document.createElement("div");
     this.#tileElement.classList.add("tile");
+    this.#tileElement.setAttribute("id", "tile");
     tileContainer.append(this.#tileElement);
     this.value = value;
   }
@@ -46,6 +47,18 @@ export default class Tile {
         "#F5F5F5"
       );
     }
+    if (gridSize == 3){
+      this.#tileElement.style.setProperty("border-radius", "8vmin");
+      this.#tileElement.style.setProperty("font-size", "6vmin");
+    } else if (gridSize == 4){
+      this.#tileElement.style.setProperty("border-radius", "6vmin");
+      this.#tileElement.style.setProperty("font-size", "5vmin");
+    } else if (gridSize == 5){
+      this.#tileElement.style.setProperty("border-radius", "5vmin");
+      this.#tileElement.style.setProperty("font-size", "4vmin");
+    }
+
+    console.log(  this.#tileElement.offsetHeight )
   }
 
   remove() {

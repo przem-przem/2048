@@ -1,8 +1,8 @@
 import Cell from "./Cell.js";
+import {gridSize, cellSize} from "./main2.js";
 
 
-const CELL_SIZE = 15;
-const CELL_GAP = 2;
+const cellGap = 2;
 
 
 
@@ -13,8 +13,8 @@ export default class Grid {
   constructor(gridElement, gridSize) {
 
     gridElement.style.setProperty("--grid-size", gridSize);
-    gridElement.style.setProperty("--cell-size", `${CELL_SIZE}vmin`);
-    gridElement.style.setProperty("--cell-gap", `${CELL_GAP}vmin`);
+    gridElement.style.setProperty("--cell-size", `${cellSize}vmin`);
+    gridElement.style.setProperty("--cell-gap", `${cellGap}vmin`);
 
 
     /* Creates the array of cell divs and maps into array of Cell objects */
@@ -67,6 +67,7 @@ const createCellElement = (gridElement, gridSize) => {
 
     const cell = document.createElement("div");
     cell.classList.add("cell");
+    cell.setAttribute("id", "cell");
     cells.push(cell);
     gridElement.append(cell);
 
