@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"g9TDx":[function(require,module,exports) {
+})({"dFFZF":[function(require,module,exports) {
 "use strict";
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "0bcb44a518dbc454";
+module.bundle.HMR_BUNDLE_ID = "eb3f75dd4d158c38";
 function _toConsumableArray(arr) {
     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
@@ -518,12 +518,20 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"1SICI":[function(require,module,exports) {
+},{}],"1tWgD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gameBoard", ()=>gameBoard
 );
+parcelHelpers.export(exports, "tile", ()=>tile
+);
 parcelHelpers.export(exports, "grid", ()=>grid
+);
+parcelHelpers.export(exports, "gridSize", ()=>gridSize
+);
+parcelHelpers.export(exports, "cellSize", ()=>cellSize
+);
+parcelHelpers.export(exports, "baseNumber", ()=>baseNumber
 );
 parcelHelpers.export(exports, "setupInput", ()=>setupInput
 );
@@ -540,17 +548,21 @@ var _settingsJs = require("./Settings.js");
 const main = document.getElementById("main");
 const gameBoard = document.getElementById("game-board");
 const radioGridButtons = Array.from(document.querySelectorAll('input[name="gridSize"]'));
+const baseNumberInput = Array.from(document.querySelectorAll('input[name="baseNumber"]'));
 const rangeInput = document.getElementById('rangeInput');
 const bubble = document.getElementById('rangeBubble');
 const openSettingsButton = document.getElementById('openSettings');
 const closeSettingsButton = document.getElementById('closeSettings');
 const tapToStart = document.getElementById('tapToStart');
 const settingsBoard = document.getElementById('settings-board');
+const starterBoard = document.getElementById('starter-board');
 const score = document.getElementById("score");
+const tile = document.getElementById("tile");
 const hiddenClass = "hidden";
 let grid = '';
 let gridSize = 4;
 let cellSize = 15;
+let baseNumber = 2;
 /* Open settings board */ openSettingsButton.addEventListener("click", function() {
     settingsBoard.classList.toggle(hiddenClass);
     tapToStart.classList.toggle(hiddenClass);
@@ -564,6 +576,7 @@ let cellSize = 15;
 });
 /* Start the game when clicking */ tapToStart.addEventListener("click", function() {
     openSettingsButton.classList.toggle(hiddenClass);
+    starterBoard.classList.toggle(hiddenClass);
     tapToStart.classList.toggle(hiddenClass);
     main.classList.toggle(hiddenClass);
     score.classList.toggle(hiddenClass);
@@ -589,12 +602,21 @@ let cellSize = 15;
     const calcPositionX1 = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
     bubble.style.left = `${calcPositionX1}px`;
 });
-for (let radio of radioGridButtons)radio.addEventListener("click", (e)=>{
-    console.log(radio);
-    console.log(radio.value);
+/* Handle grid size input */ for (let radio of radioGridButtons)radio.addEventListener("click", (e)=>{
     gridSize = radio.value;
-    if (radio.value == 3) cellSize = 10;
-    else if (radio.value == 4) cellSize = 10;
+    if (radio.value == 3) {
+        gridSize = 3;
+        cellSize = 18;
+    } else if (radio.value == 4) {
+        gridSize = 4;
+        cellSize = 15;
+    } else if (radio.value == 5) {
+        gridSize = 5;
+        cellSize = 11;
+    }
+});
+for (let number of baseNumberInput)number.addEventListener("input", (e)=>{
+    baseNumber = parseInt(number.value);
 });
 const setupInput = ()=>{
     window.addEventListener("keydown", _inputHandlerJs.handlerInput, {
@@ -621,14 +643,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _cellJs = require("./Cell.js");
 var _cellJsDefault = parcelHelpers.interopDefault(_cellJs);
-const CELL_SIZE = 15;
-const CELL_GAP = 2;
+var _main2Js = require("./main2.js");
+const cellGap = 2;
 class Grid {
     #cells;
     constructor(gridElement, gridSize){
         gridElement.style.setProperty("--grid-size", gridSize);
-        gridElement.style.setProperty("--cell-size", `${CELL_SIZE}vmin`);
-        gridElement.style.setProperty("--cell-gap", `${CELL_GAP}vmin`);
+        gridElement.style.setProperty("--cell-size", `${_main2Js.cellSize}vmin`);
+        gridElement.style.setProperty("--cell-gap", `${cellGap}vmin`);
         /* Creates the array of cell divs and maps into array of Cell objects */ this.#cells = createCellElement(gridElement, gridSize).map((el, index)=>{
             return new _cellJsDefault.default(el, index % gridSize, Math.floor(index / gridSize));
         });
@@ -665,43 +687,14 @@ const createCellElement = (gridElement, gridSize)=>{
     for(let i = 0; i < gridSize * gridSize; i++){
         const cell = document.createElement("div");
         cell.classList.add("cell");
+        cell.setAttribute("id", "cell");
         cells.push(cell);
         gridElement.append(cell);
     }
     return cells;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Cell.js":"6LzwN"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"6LzwN":[function(require,module,exports) {
+},{"./Cell.js":"6LzwN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main2.js":"1tWgD"}],"6LzwN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 let SCORE = 0;
@@ -758,9 +751,40 @@ const updateScore = (value)=>{
     scoreElement.innerHTML = `Score:  ${SCORE}`;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kElux":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"kElux":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _main2Js = require("./main2.js");
 const tileColors = [
     '#a7d0cd',
     '#b8c0b8',
@@ -779,9 +803,10 @@ class Tile {
     #x;
     #y;
     #value;
-    constructor(tileContainer, value = Math.random() > 0.5 ? 3 : 6){
+    constructor(tileContainer, value = Math.random() > 0.5 ? _main2Js.baseNumber : _main2Js.baseNumber * 2){
         this.#tileElement = document.createElement("div");
         this.#tileElement.classList.add("tile");
+        this.#tileElement.setAttribute("id", "tile");
         tileContainer.append(this.#tileElement);
         this.value = value;
     }
@@ -803,6 +828,17 @@ class Tile {
         const index = Math.floor(power);
         this.#tileElement.style.setProperty("background-color", tileColors[index - 1]);
         if (index >= 8) this.#tileElement.style.setProperty("color", "#F5F5F5");
+        if (_main2Js.gridSize == 3) {
+            this.#tileElement.style.setProperty("border-radius", "8vmin");
+            this.#tileElement.style.setProperty("font-size", "6vmin");
+        } else if (_main2Js.gridSize == 4) {
+            this.#tileElement.style.setProperty("border-radius", "6vmin");
+            this.#tileElement.style.setProperty("font-size", "5vmin");
+        } else if (_main2Js.gridSize == 5) {
+            this.#tileElement.style.setProperty("border-radius", "5vmin");
+            this.#tileElement.style.setProperty("font-size", "4vmin");
+        }
+        console.log(this.#tileElement.offsetHeight);
     }
     remove() {
         this.#tileElement.remove();
@@ -817,21 +853,21 @@ class Tile {
 }
 exports.default = Tile;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2qFKw":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main2.js":"1tWgD"}],"2qFKw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "determineTouchDirection", ()=>determineTouchDirection
 );
 parcelHelpers.export(exports, "handlerInput", ()=>handlerInput
 );
-var _mainJs = require("./main.js");
+var _main2Js = require("./main2.js");
 var _gridJs = require("./Grid.js");
 var _gridJsDefault = parcelHelpers.interopDefault(_gridJs);
 var _tileJs = require("./Tile.js");
 var _tileJsDefault = parcelHelpers.interopDefault(_tileJs);
 const determineTouchDirection = ()=>{
-    /* Distance in X direction */ const distanceX = _mainJs.touches[0][1] - _mainJs.touches[0][0];
-    /* Distance in Y direction */ const distanceY = _mainJs.touches[1][1] - _mainJs.touches[1][0];
+    /* Distance in X direction */ const distanceX = _main2Js.touches[0][1] - _main2Js.touches[0][0];
+    /* Distance in Y direction */ const distanceY = _main2Js.touches[1][1] - _main2Js.touches[1][0];
     /* if Y distance is bigger than X distance, then vertical direction */ if (Math.abs(distanceX) > Math.abs(distanceY)) {
         if (distanceX > 0) return "ArrowRight";
         else return "ArrowLeft";
@@ -847,61 +883,61 @@ const handlerInput = async (e)=>{
     switch(direction){
         case "ArrowUp":
             if (!canMoveUp()) {
-                _mainJs.setupInput();
+                _main2Js.setupInput();
                 return;
             }
             await moveUp();
             break;
         case "ArrowDown":
             if (!canMoveDown()) {
-                _mainJs.setupInput();
+                _main2Js.setupInput();
                 return;
             }
             await moveDown();
             break;
         case "ArrowLeft":
             if (!canMoveLeft()) {
-                _mainJs.setupInput();
+                _main2Js.setupInput();
                 return;
             }
             await moveLeft();
             break;
         case "ArrowRight":
             if (!canMoveRight()) {
-                _mainJs.setupInput();
+                _main2Js.setupInput();
                 return;
             }
             await moveRight();
             break;
         default:
-            _mainJs.setupInput();
+            _main2Js.setupInput();
             return;
     }
-    _mainJs.grid.cells.forEach((cell)=>cell.mergeTiles()
+    _main2Js.grid.cells.forEach((cell)=>cell.mergeTiles()
     );
-    const newTile = new _tileJsDefault.default(_mainJs.gameBoard);
-    _mainJs.grid.randomEmptyCell().tile = newTile;
-    _mainJs.touches[0].length = 0;
-    _mainJs.touches[1].length = 1;
+    const newTile = new _tileJsDefault.default(_main2Js.gameBoard);
+    _main2Js.grid.randomEmptyCell().tile = newTile;
+    _main2Js.touches[0].length = 0;
+    _main2Js.touches[1].length = 1;
     if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) newTile.waitForTransition(true).then(()=>{
         alert("You lose");
     });
-    else _mainJs.setupInput();
+    else _main2Js.setupInput();
 };
 const moveUp = ()=>{
-    slideTiles(_mainJs.grid.cellsByColumn);
+    slideTiles(_main2Js.grid.cellsByColumn);
 };
 const moveLeft = ()=>{
-    slideTiles(_mainJs.grid.cellsByRow);
+    slideTiles(_main2Js.grid.cellsByRow);
 };
 const moveDown = ()=>{
-    slideTiles(_mainJs.grid.cellsByColumn.map((column)=>[
+    slideTiles(_main2Js.grid.cellsByColumn.map((column)=>[
             ...column
         ].reverse()
     ));
 };
 const moveRight = ()=>{
-    slideTiles(_mainJs.grid.cellsByRow.map((row)=>[
+    slideTiles(_main2Js.grid.cellsByRow.map((row)=>[
             ...row
         ].reverse()
     ));
@@ -929,20 +965,20 @@ const slideTiles = (cells)=>{
     }));
 };
 const canMoveUp = ()=>{
-    return canMove(_mainJs.grid.cellsByColumn);
+    return canMove(_main2Js.grid.cellsByColumn);
 };
 const canMoveDown = ()=>{
-    return canMove(_mainJs.grid.cellsByColumn.map((column)=>[
+    return canMove(_main2Js.grid.cellsByColumn.map((column)=>[
             ...column
         ].reverse()
     ));
 };
 const canMoveLeft = ()=>{
-    console.log(_mainJs.grid);
-    return canMove(_mainJs.grid.cellsByRow);
+    console.log(_main2Js.grid);
+    return canMove(_main2Js.grid.cellsByRow);
 };
 const canMoveRight = ()=>{
-    return canMove(_mainJs.grid.cellsByRow.map((row)=>[
+    return canMove(_main2Js.grid.cellsByRow.map((row)=>[
             ...row
         ].reverse()
     ));
@@ -958,7 +994,7 @@ const canMove = (cells)=>{
     });
 };
 
-},{"./main.js":"1SICI","./Grid.js":"irQ6N","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8wGYB":[function(require,module,exports) {
+},{"./Grid.js":"irQ6N","./Tile.js":"kElux","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main2.js":"1tWgD"}],"8wGYB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setRangeBubble", ()=>setRangeBubble
@@ -971,6 +1007,6 @@ const setRangeBubble = ()=>{
     bubble.style.left = `${calcPositionX}px`;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["g9TDx","1SICI"], "1SICI", "parcelRequire7b01")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["dFFZF","1tWgD"], "1tWgD", "parcelRequire7b01")
 
-//# sourceMappingURL=index.18dbc454.js.map
+//# sourceMappingURL=index.4d158c38.js.map
