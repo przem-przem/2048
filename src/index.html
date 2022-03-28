@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale= 1.0">
-    <link rel="stylesheet" href="./styles0.css">
+    <link rel="stylesheet" href="./styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
@@ -13,7 +13,11 @@
   <body>
     <nav>
       <h1 id="title" class="title">2048</h1>
-      <h2 id="score" class="score hidden">Score: 0</h2>
+      <div id="nav__data" class="nav__data hidden">
+        <h2 id="maxtile" class="score">Max tile: 2048</h2>
+        <span class="pipe">|</span>
+        <h2 id="score" class="score"> Score: 0</h2>
+      </div>
     </nav>
 
     <main id="main" class="main hidden">

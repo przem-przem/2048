@@ -20,6 +20,8 @@ const tapToStart = document.getElementById('tapToStart');
 const settingsBoard = document.getElementById('settings-board');
 const starterBoard = document.getElementById('starter-board');
 const score = document.getElementById("score");
+export const maxtile = document.getElementById("maxtile");
+const navData = document.getElementById("nav__data");
 export const tile = document.getElementById("tile");
 export const endGameBoard = document.getElementById("endgame__board");
 export const endGameTitle = document.getElementById("endgame__title");
@@ -31,6 +33,7 @@ export let grid = '';
 export let gridSize = 4;
 export let cellSize = 15;
 export let baseNumber = 2;
+export let MAX_TILE = 0;
 
 
 
@@ -56,10 +59,18 @@ tapToStart.addEventListener("click", function () {
   starterBoard.classList.toggle(hiddenClass);
   tapToStart.classList.toggle(hiddenClass);
   main.classList.toggle(hiddenClass);
-  score.classList.toggle(hiddenClass);
+  navData.classList.toggle(hiddenClass);
+
   grid = new Grid(gameBoard, gridSize);
-  grid.randomEmptyCell().tile = new Tile(gameBoard);
-  grid.randomEmptyCell().tile = new Tile(gameBoard);
+  let newTile = new Tile(gameBoard);
+  MAX_TILE = newTile.value;
+  grid.randomEmptyCell().tile = newTile;
+
+  newTile = new Tile(gameBoard);
+  MAX_TILE = Math.max(MAX_TILE, newTile.value);
+  grid.randomEmptyCell().tile = newTile;
+  maxtile.innerHTML = `Max tile: ${MAX_TILE}`;
+
   setupInput();
 })
 
@@ -70,8 +81,8 @@ window.addEventListener("keyup", e => {
     openSettingsButton.classList.toggle(hiddenClass);
     tapToStart.classList.toggle(hiddenClass);
     main.classList.toggle(hiddenClass);
-    score.classList.toggle(hiddenClass);
-    grid = new Grid(gameBoard);
+    navData.classList.toggle(hiddenClass);
+    grid = new Grid(gameBoard, gridSize);
     grid.randomEmptyCell().tile = new Tile(gameBoard);
     grid.randomEmptyCell().tile = new Tile(gameBoard);
     setupInput();

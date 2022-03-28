@@ -1,4 +1,4 @@
-import {grid, gameBoard, setupInput, touches, endGameBoard, hiddenClass} from "./main2.js";
+import {grid, gameBoard, setupInput, touches, endGameBoard, hiddenClass, maxtile, MAX_TILE} from "./main2.js";
 import Grid from "./Grid.js";
 import Tile from "./Tile.js";
 import {endGame, endGameScoreUpdate} from "./EndgameHandler.js";
@@ -92,6 +92,8 @@ export const handlerInput = async e => {
   }
 
   const newTile = new Tile(gameBoard);
+  MAX_TILE = Math.max(MAX_TILE, newTile.value);
+  maxtile.innerHTML = `Max tile: ${MAX_TILE}`;
   grid.randomEmptyCell().tile = newTile;
 
   touches[0].length = 0;
