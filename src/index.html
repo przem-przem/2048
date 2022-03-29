@@ -3,15 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale= 1.0">
-    <link rel="stylesheet" href="./styles.css">
+    <meta name="color-scheme" content="dark light">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="" id="darktheme">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/232e89c80e.js" crossorigin="anonymous"></script>
     <title>2048 Game</title>
   </head>
-  <body>
-    <nav>
+  <body class="background--dark-mode">
+    <nav class="text--dark-mode">
       <h1 id="title" class="title">2048</h1>
       <div id="nav__data" class="nav__data hidden">
         <h2 id="maxtile" class="score">Max tile: 2048</h2>
@@ -21,41 +23,41 @@
     </nav>
 
     <main id="main" class="main hidden">
-      <div id="game-board" class="main--game">
+      <div id="game-board" class="main--game elevation1--dark-mode">
 
       </div>
 
-      <div id="endgame__board" class="main--endgame hidden">
+      <div id="endgame__board" class="main--endgame hidden elevation2--dark-mode text--dark-mode">
         <h2 id="endgame__title" class="settings__mainTitle">You lose!</h2>
         <p id="endgame__score" class="score score--endgame">Your score: 4240</p>
-        <a href="./index.html" id="endgame__button" class="endgame__button">Play again</a>
+        <a href="./index.html" id="endgame__button" class="endgame__button elevation2--dark-mode text--dark-mode">Play again</a>
       </div>
 
 
     </main>
 
-    <main id="starter-board" class="main--starter">
+    <main id="starter-board" class="main--starter text--dark-mode">
 
       <div id="tapToStart" class="tapToStart">
         <p class="tapToStart__text">Tap here to start the game</p>
         <h3 class="fa-solid fa-play fa-2xl startGameIcon"></h3>
       </div>
 
-      <button id="openSettings" class="openSettingsButton">
+      <button id="openSettings" class="openSettingsButton text--dark-mode">
         <span class="fa-solid fa-gear fa-xs"></span>
         <h4 class="openSettingsButton__text">Change settings<h4>
       </button>
 
-      <section id="settings-board" class="main--settings hidden">
+      <section id="settings-board" class="main--settings hidden elevation1--dark-mode">
 
         <div class="settings__topbar">
           <h2 class="settings__mainTitle">Settings</h2>
-          <span id="closeSettings" class="fa-solid fa-xmark fa-xl closeSettingsButton"></span>
+          <span id="closeSettings" class="fa-solid fa-xmark fa-xl settings__closeSettingsButton"></span>
         </div>
 
         <div class="settings__setting">
 
-          <h3 class="settings__title">Grid size:</h3>
+          <h3 class="settings__sectionTitle">Grid size:</h3>
           <div class="settings__radioOption">
             <input type="radio" id="3" name="gridSize" value="3">
             <label class="radioOption__label" for="3">3x3</label>
@@ -75,21 +77,23 @@
         </div>
         <div class="settings__setting settings__setting--rangeInput">
 
-          <h3 class="settings__title">Base number:</h3>
+          <h3 class="settings__sectionTitle">Base number:</h3>
           <div class="settings__rangeInput">
 
               <input id="rangeInput" name="baseNumber" type="range" min="1" max="10" step="1" value="2">
-              <output id="rangeBubble" class="rangeBubble" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
+              <output id="rangeBubble" class="settings__rangeBubble" for="baseNumber" onforminput="baseNumber.valueAsNumber;">2</output>
 
-
+          </div>
         </div>
         <div class="settings__setting">
 
-          <h3 class="settings__title">Dark mode:</h3>
+          <h3 class="settings__sectionTitle">Dark mode:</h3>
           <div class="settings__darkMode">
-            <label class="settings__darkModeState">Off</label>
-            <input type="checkbox">
+            <label class="settings__darkModeState" id="darkmode__label">Off
+            <input type="checkbox" name="a" value="1" id="darkmode"/>
             <span class="setting__checkbox"></span>
+            On
+            </label>
           </div>
 
 
@@ -107,5 +111,5 @@
 
 
   </body>
-  <script src="./js/main2.js" type="module"></script>
+  <script src="./js/main.js"></script>
 </html>

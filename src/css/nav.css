@@ -1,0 +1,51 @@
+
+nav {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.nav__data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pipe {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+
+.title {
+  font-size: 4rem;
+}
+
+@media (min-width: 768px){
+  .title {
+    font-size: 5rem;
+  }
+}
+
+
+.title::selection {
+  color: #F5F5F5;
+  background-color: black;
+}
+
+
+.score {
+  margin: 3vmin;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px){
+  .score {
+    font-size: 2rem;
+  }
+}
+
+.score::selection {
+  color: #F5F5F5;
+  background-color: black;
+}

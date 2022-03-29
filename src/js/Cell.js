@@ -1,5 +1,5 @@
 import {endGame} from "./EndgameHandler.js";
-import {title, baseNumber, maxtile, MAX_TILE} from "./main2.js";
+import {title, baseNumber, maxtile, MAX_TILE, maxCellFactor} from "./main2.js";
 
 export let SCORE = 0;
 const scoreElement = document.getElementById("score");
@@ -55,23 +55,19 @@ export default class Cell {
   mergeTiles() {
     if(this.mergeTile == null || this.tile == null) return;
     this.tile.value = this.tile.value + this.mergeTile.value;
-    console.log(this.tile.value);
-    console.log(MAX_TILE);
-    const newMax = Math.max(MAX_TILE, this.tile.value);
-    console.log(newMax);
-    maxtile.innerHTML = `Max tile: ${newMax}`;
+     MAX_TILE = Math.max(MAX_TILE, this.tile.value);
+    maxtile.innerHTML = `Max tile: ${MAX_TILE}`;
     if (typeof this.tile.value == "number"){
       updateScore(this.tile.value);
       updateMaxtile();
     }
 
-    if (this.tile.value == 1024 * baseNumber){
+    if (this.tile.value == 1024 * baseNumber * maxCellFactor){
       endGame(true);
     }
 
     this.mergeTile.remove();
     this.mergeTile = null;
-
 
   }
 }

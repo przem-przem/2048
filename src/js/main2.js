@@ -7,11 +7,13 @@ import {setRangeBubble} from "./Settings.js";
 
 
 
+const darktheme = document.querySelector("#darktheme");
 const main = document.getElementById("main");
 export const title = document.getElementById("title");
 export const gameBoard = document.getElementById("game-board");
 const radioGridButtons = Array.from(document.querySelectorAll('input[name="gridSize"]'));
 const baseNumberInput = Array.from(document.querySelectorAll('input[name="baseNumber"]'));
+const darkModeToggle = document.getElementById("darkmode");
 const rangeInput = document.getElementById('rangeInput');
 const bubble = document.getElementById('rangeBubble');
 const openSettingsButton = document.getElementById('openSettings');
@@ -34,7 +36,7 @@ export let gridSize = 4;
 export let cellSize = 15;
 export let baseNumber = 2;
 export let MAX_TILE = 0;
-
+export let maxCellFactor = 1;
 
 
 
@@ -72,6 +74,7 @@ tapToStart.addEventListener("click", function () {
   maxtile.innerHTML = `Max tile: ${MAX_TILE}`;
 
   setupInput();
+  mobileSetupInput();
 })
 
 
@@ -86,6 +89,7 @@ window.addEventListener("keyup", e => {
     grid.randomEmptyCell().tile = new Tile(gameBoard);
     grid.randomEmptyCell().tile = new Tile(gameBoard);
     setupInput();
+    mobileSetupInput();
   }
 });
 
@@ -96,7 +100,7 @@ rangeInput.addEventListener("input", ()=>{
     const calcPositionX1 = rangeInput.offsetWidth / 10 * rangeInput.value - rangeInput.offsetWidth / 10 + 4;
     bubble.style.left = `${calcPositionX1}px`;
     baseNumber = parseInt(rangeInput.value);
-    title.innerHTML = 1024*baseNumber;
+    title.innerHTML = 1024 * baseNumber * maxCellFactor;
 });
 
 
@@ -107,18 +111,27 @@ for (let radio of radioGridButtons){
     if (radio.value == 3){
       gridSize = 3;
       cellSize = 18;
+      title.innerHTML = 1024 * baseNumber * maxCellFactor;
     } else if (radio.value == 4){
       gridSize = 4;
       cellSize = 15;
+      title.innerHTML = 1024 * baseNumber * maxCellFactor;
     } else if (radio.value == 5){
       gridSize = 5;
       cellSize = 11;
+      title.innerHTML = 1024 * baseNumber * maxCellFactor;
     }
   });
 }
 
 
-
+darkModeToggle.addEventListener("click", function (){
+  if (darktheme.getAttribute("href") == "./css/darkmode.css"){
+    darktheme.href = "";
+  } else {
+    darktheme.href = "./css/darkmode.css";
+  }
+});
 
 
 
@@ -130,16 +143,19 @@ export const setupInput = () => {
 /* Define array that tracks XY coordinates of touchstart and touchend events */
 export var touches = [[], []];
 
-/* Push XY coordinates of touchstart event */
-window.addEventListener("touchstart", function (ev) {
-  touches[0].push(ev.changedTouches[0].screenX);
-  touches[1].push(ev.changedTouches[0].screenY);
-})
 
-/* Push XY coordinates of touchend event, determine direction and invoke handlerInput function */
-window.addEventListener("touchend", function (ev) {
-  touches[0].push(ev.changedTouches[0].screenX);
-  touches[1].push(ev.changedTouches[0].screenY);
-  const direction = determineTouchDirection(touches);
-  handlerInput(direction);
-})
+const mobileSetupInput = () => {
+  /* Push XY coordinates of touchstart event */
+  window.addEventListener("touchstart", function (ev) {
+    touches[0].push(ev.changedTouches[0].screenX);
+    touches[1].push(ev.changedTouches[0].screenY);
+  }, {once: true})
+
+  /* Push XY coordinates of touchend event, determine direction and invoke handlerInput function */
+  window.addEventListener("touchend", function (ev) {
+    touches[0].push(ev.changedTouches[0].screenX);
+    touches[1].push(ev.changedTouches[0].screenY);
+    const direction = determineTouchDirection(touches);
+    handlerInput(direction);
+  }, {once: true})
+}
