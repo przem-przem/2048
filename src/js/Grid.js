@@ -1,5 +1,5 @@
-import Cell from "./Cell.js";
-import {gridSize, cellSize} from "./main2.js";
+import Cell from "./Cell";
+import {gridSize, cellSize} from "./main";
 
 
 const cellGap = 2;

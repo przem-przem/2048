@@ -1,5 +1,5 @@
 const tileColors = ['#a7d0cd', '#b8c0b8', '#bfb2a7', '#c1a49a', '#bf988f', '#b98c86', '#b18180', '#a7787c', '#9a6f7a', '#8c6779', '#7b6079']
-import {tile, gridSize, baseNumber} from "./main2.js";
+import {tile, gridSize, baseNumber} from "./main";
 
 export default class Tile {
   #tileElement
@@ -35,7 +35,8 @@ export default class Tile {
   set value (v) {
     this.#value = v;
     this.#tileElement.textContent = v;
-    const power = Math.log2(v);
+    const power = v / (2 * baseNumber);
+    console.log(power);
     const index = Math.floor(power);
     this.#tileElement.style.setProperty(
       "background-color",

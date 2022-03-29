@@ -1,5 +1,5 @@
-import {endGameBoard, endGameTitle, endgameScore, hiddenClass} from "./main2.js";
-import {SCORE} from "./Cell.js";
+import {endGameBoard, endGameTitle, endgameScore, hiddenClass} from "./main";
+import {SCORE} from "./Cell";
 
 export const endGame = outcome => {
 

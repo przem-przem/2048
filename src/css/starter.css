@@ -29,6 +29,7 @@
   margin-bottom: 6vmin;
   font-size: 1.5rem;
   cursor: pointer;
+  color: #000;
 }
 
 .openSettingsButton__text {
