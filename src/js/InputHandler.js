@@ -9,10 +9,11 @@ import {SCORE} from "./Cell.js";
 export const determineTouchDirection = () => {
 
   /* Distance in X direction */
-  const distanceX = touches[0][1] - touches [0][0];
+  const distanceX = touches[0][1] - touches[0][0];
+
 
   /* Distance in Y direction */
-  const distanceY = touches[1][1] - touches [1][0];
+  const distanceY = touches[1][1] - touches[1][0];
 
 
   /* if Y distance is bigger than X distance, then vertical direction */

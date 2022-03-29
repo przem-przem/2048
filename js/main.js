@@ -143,17 +143,17 @@ darkModeToggle.addEventListener("click", function (){
 const mobileSetupInput = () => {
   /* Push XY coordinates of touchstart event */
   window.addEventListener("touchstart", function (ev) {
-    touches[0].push(ev.changedTouches[0].screenX);
-    touches[1].push(ev.changedTouches[0].screenY);
-  }, {once: true})
+    touches[0][0] = ev.changedTouches[0].screenX;
+    touches[1][0] = ev.changedTouches[0].screenY;
+  })
 
   /* Push XY coordinates of touchend event, determine direction and invoke handlerInput function */
   window.addEventListener("touchend", function (ev) {
-    touches[0].push(ev.changedTouches[0].screenX);
-    touches[1].push(ev.changedTouches[0].screenY);
+    touches[0][1] = ev.changedTouches[0].screenX;
+    touches[1][1] = ev.changedTouches[0].screenY;
     const direction = determineTouchDirection(touches);
     handlerInput(direction);
-  }, {once: true})
+  })
 }
 
 
@@ -398,9 +398,13 @@ const createCellElement = (gridElement, gridSize) => {
 
   /* Distance in X direction */
   const distanceX = touches[0][1] - touches [0][0];
+  console.log(`X1: ${touches[0][0]}, X2: ${touches[0][1]}`)
+  console.log(distanceX);
 
   /* Distance in Y direction */
   const distanceY = touches[1][1] - touches [1][0];
+  console.log(`Y1: ${touches[1][0]}, Y2: ${touches[1][1]}`)
+  console.log(distanceY);
 
 
   /* if Y distance is bigger than X distance, then vertical direction */
