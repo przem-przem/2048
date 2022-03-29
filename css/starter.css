@@ -1,6 +1,6 @@
 .main--starter {
+  margin: 0 2rem;
   text-align: center;
-  margin: 4rem 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
 }
 
 .tapToStart {
-  margin: 4rem;
+  margin: 6rem 2rem;
 }
 
 .tapToStart__text {
