@@ -35,8 +35,7 @@ export default class Tile {
   set value (v) {
     this.#value = v;
     this.#tileElement.textContent = v;
-    const power = v / (2 * baseNumber);
-    console.log(power);
+    const power = Math.log2(v);
     const index = Math.floor(power);
     this.#tileElement.style.setProperty(
       "background-color",
