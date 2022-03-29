@@ -23,7 +23,12 @@ const hiddenClass = "hidden";
  let grid = '';
 
  let gridSize = 4;
- let cellSize = 18;
+ let cellSize;
+ if (window.screen.width > 1024){
+   cellSize = 15;
+ } else {
+   cellSize = 18;
+ }
  let baseNumber = 2;
  let MAX_TILE = 0;
  let maxCellFactor = 1;
