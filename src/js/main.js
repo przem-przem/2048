@@ -42,7 +42,12 @@ export const elevation2DM = "elevation2--dark-mode";
 export let grid = '';
 
 export let gridSize = 4;
-export let cellSize = 15;
+export let cellSize;
+if (window.screen.width > 1024){
+  cellSize = 15;
+} else {
+  cellSize = 18;
+}
 export let baseNumber = 2
 export let maxCellFactor = 1;
 
