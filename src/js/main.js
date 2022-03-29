@@ -23,7 +23,12 @@ const hiddenClass = "hidden";
  let grid = '';
 
  let gridSize = 4;
- let cellSize = 18;
+ let cellSize;
+ if (window.screen.width > 1024){
+   cellSize = 15;
+ } else {
+   cellSize = 18;
+ }
  let baseNumber = 2;
  let MAX_TILE = 0;
  let maxCellFactor = 1;
@@ -102,17 +107,29 @@ for (let radio of radioGridButtons){
     gridSize = radio.value;
     if (radio.value == 3){
       gridSize = 3;
-      cellSize = 24;
+      if (window.screen.width > 1024){
+        cellSize = 18;
+      } else {
+        cellSize = 24;
+      }
       maxCellFactor = 0.125;
       title.innerHTML = 1024 * baseNumber * maxCellFactor;
     } else if (radio.value == 4){
       gridSize = 4;
-      cellSize = 18;
+      if (window.screen.width > 1024){
+        cellSize = 15;
+      } else {
+        cellSize = 18;
+      }
       maxCellFactor = 1;
       title.innerHTML = 1024 * baseNumber * maxCellFactor;
     } else if (radio.value == 5){
       gridSize = 5;
-      cellSize = 14;
+      if (window.screen.width > 1024){
+        cellSize = 11;
+      } else {
+        cellSize = 14;
+      }
       maxCellFactor = 1;
       title.innerHTML = 1024 * baseNumber * maxCellFactor;
     }

@@ -110,15 +110,30 @@ for (let radio of radioGridButtons){
     gridSize = radio.value;
     if (radio.value == 3){
       gridSize = 3;
-      cellSize = 18;
+      if (window.screen.width > 1024){
+        cellSize = 18;
+      } else {
+        cellSize = 24;
+      }
+      maxCellFactor = 0.125;
       title.innerHTML = 1024 * baseNumber * maxCellFactor;
     } else if (radio.value == 4){
       gridSize = 4;
-      cellSize = 15;
+      if (window.screen.width > 1024){
+        cellSize = 15;
+      } else {
+        cellSize = 18;
+      }
+      maxCellFactor = 1;
       title.innerHTML = 1024 * baseNumber * maxCellFactor;
     } else if (radio.value == 5){
       gridSize = 5;
-      cellSize = 11;
+      if (window.screen.width > 1024){
+        cellSize = 11;
+      } else {
+        cellSize = 14;
+      }
+      maxCellFactor = 1;
       title.innerHTML = 1024 * baseNumber * maxCellFactor;
     }
   });
