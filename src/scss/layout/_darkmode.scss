@@ -1,0 +1,22 @@
+@use "../helpers" as *;
+
+
+
+.background--dark-mode {
+  background-color: $darkmode-bg1;
+}
+
+.text--dark-mode {
+  color: $darkmode-txt;
+  border-color: $darkmode-txt;
+}
+
+.elevation1--dark-mode {
+  background-color: $darkmode-bg2;
+  box-shadow: 0 0 0 0;
+}
+
+.elevation2--dark-mode {
+  background-color: $darkmode-bg3;
+  box-shadow: 0 0 0 0;
+}

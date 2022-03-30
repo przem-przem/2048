@@ -2,8 +2,7 @@
   "name": "2048",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/przem-przem/2048.git"
@@ -16,6 +15,7 @@
   },
   "homepage": "https://github.com/przem-przem/2048#readme",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.4.0",
     "parcel": "^2.4.0"
   }
 }

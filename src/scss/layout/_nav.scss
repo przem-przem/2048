@@ -1,0 +1,51 @@
+@use "../helpers" as *;
+
+
+nav {
+  margin-top: $space-lg;
+  text-align: center;
+}
+
+.nav__data {
+  @include flex-center-center;
+}
+
+.pipe {
+  font-weight: bold;
+  font-size: $text-lg;
+}
+
+
+.title {
+  font-size: $text-xxl;
+}
+
+@media (min-width: 768px){
+  .title {
+    font-size: $text-xxxl
+  }
+}
+
+
+.title::selection {
+  color: #F5F5F5;
+  background-color: black;
+}
+
+
+.score {
+  margin: $space-lg $space-md;
+  text-align: center;
+  font-size: $text-lg;
+
+  &::selection {
+  color: $whitish-bg;
+  background-color: $black;
+  }
+}
+
+@media (min-width: 768px){
+  .score {
+    font-size: $text-xl;
+  }
+}

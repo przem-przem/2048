@@ -1,0 +1,42 @@
+@use "../helpers" as *;
+
+
+
+.main--starter {
+  margin: 0 $space-lg;
+  text-align: center;
+  position: relative;
+  @include flex-center-center-vertical;
+}
+
+
+.startGameIcon {
+  margin: 6vmin;
+  animation: bounce 2000ms infinite;
+}
+
+.tapToStart {
+  margin: $space-xxxl $space-lg;
+}
+
+.tapToStart__text {
+  font-size: $text-xl;
+  margin-bottom: $space-lg;
+}
+
+
+.openSettingsButton {
+  background-color: inherit;
+  border: none;
+  margin-bottom: 6vmin;
+  font-size: $text-lg;
+  cursor: pointer;
+  color: $black;
+}
+
+.openSettingsButton__text {
+  font-size: $text-lg;
+  font-weight: normal;
+  text-decoration: underline;
+  display: inline-block;
+}

@@ -1,0 +1,40 @@
+.main--starter {
+  margin: 0 2rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.startGameIcon {
+  margin: 6vmin;
+  animation: bounce 2000ms infinite;
+}
+
+.tapToStart {
+  margin: 6rem 2rem;
+}
+
+.tapToStart__text {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+.openSettingsButton {
+  background-color: inherit;
+  border: none;
+  margin-bottom: 6vmin;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #000;
+}
+
+.openSettingsButton__text {
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-decoration: underline;
+  display: inline-block;
+}

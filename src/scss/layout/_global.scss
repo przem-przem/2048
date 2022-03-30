@@ -1,0 +1,39 @@
+@use "../helpers" as *;
+
+
+
+:root {
+  color-scheme: light dark;
+}
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: $font-primary, $font-secondary;
+}
+
+
+html {
+  height: fill-available;
+  height: -webkit-fill-available;
+}
+
+
+body {
+  @include flex-center-vertical;
+
+  background-color: $whitish-bg;
+  overscroll-behavior: none;
+  min-width: $min-width;
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
+  color: $black;
+}
+
+
+.hidden {
+  display: none;
+}

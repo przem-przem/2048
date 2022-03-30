@@ -1,0 +1,199 @@
+@use "../helpers" as *;
+
+
+.main--settings {
+  text-align: left;
+  width: 100%;
+  padding: $space-lg;
+  margin: $space-lg;
+  border-radius: 3vmin;
+  box-shadow: 0 0 25px 10px $whitish-shadow;
+  background-color: $whitish-bg;
+  z-index: 1;
+  min-width: 350px;
+  max-width: 700px;
+}
+
+
+
+.settings__topbar {
+  @include flex-spacebetween-center;
+}
+
+.settings__mainTitle {
+  font-size: $text-xl;
+}
+
+
+.settings__closeSettingsButton {
+  cursor: pointer;
+}
+
+
+
+.settings__setting {
+  margin: $space-xl 0;
+}
+
+.settings__setting:last-of-type {
+  margin-bottom: 0;
+}
+
+
+.settings__sectionTitle {
+  font-size: $text-lg;
+  margin-bottom: $text-md;
+}
+
+
+
+.settings__radioOption {
+  display: flex;
+  align-items: center;
+  margin: $space-md 0;
+}
+
+
+.radioOption__label {
+  font-size: $text-lg;
+}
+
+input[type=radio] {
+  margin-right: 3vmin;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: $whitish-bg;
+  border: 2px solid $black;
+  display: grid;
+  place-content: center;
+}
+
+input[type=radio]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 10px 10px $black;
+}
+
+
+input[type=radio]:checked::before {
+  transform: scale(1);
+}
+
+
+
+
+.settings__rangeInput {
+  position: relative;
+  @include flex-center-center;
+  justify-content: start;
+  margin: $space-lg 0 $space-xxxl;
+}
+
+
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 15rem;
+  align-self: center;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: black;
+  height: $space-sm;
+  border-radius: $space-sm;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: $space-md-plus;
+  max-width: $space-md-plus;
+  border-radius: 50%;
+  background-color: $whitish-bg;
+  border: 4px solid $black;
+  margin-top: -8px;
+}
+
+
+.settings__rangeBubble {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  font-size: $text-lg;
+}
+
+.settings__darkMode {
+  display: flex;
+  align-items: center;
+}
+
+
+.settings__darkModeState {
+  margin-right: $space-md;
+  font-size: $text-lg;
+}
+
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+}
+
+.setting__checkbox {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin: 0 $space-sm;
+  background: black;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.5s ease-in;
+}
+
+.setting__checkbox::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background-color: $whitish-bg;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+input[type="checkbox"]:checked ~ .setting__checkbox {
+  background: $whitish-bg;
+}
+
+input[type="checkbox"]:checked ~ .setting__checkbox::before {
+  transform: translateX(-50px);
+}
+
+.setting__checkbox::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: $black;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: 0.5s;
+  transform: translateX(50px);
+}
+
+input[type="checkbox"]:checked ~ .setting__checkbox::after {
+  transform: translateX(20px);
+}
