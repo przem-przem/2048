@@ -11,7 +11,7 @@
 
 ## Summary
 
-This project is my implementation of "2048" - popular sliding tile puzzle game. The logic was built based on the Web Dev Simplified video.
+This project is my implementation of "2048" - popular sliding tile puzzle game. The logic was built based on the Web Dev Simplified video [link to the YT channel](https://www.youtube.com/c/WebDevSimplified);
 
 
 **Intial view:**
