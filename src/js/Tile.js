@@ -36,10 +36,17 @@ export default class Tile {
     this.#value = v;
     this.#tileElement.textContent = v;
     const power = Math.log2(v);
-    const index = Math.floor(power);
+    let index = Math.floor(power);
+    if (baseNumber == 2 || baseNumber == 3){
+      index = index - 1;
+    } else if (baseNumber >= 3 && baseNumber <= 7){
+      index = index - 2;
+    } else if (baseNumber >= 8){
+      index = index - 3;
+    }
     this.#tileElement.style.setProperty(
       "background-color",
-      tileColors[index-1]
+      tileColors[index]
     );
     if (index >= 8){
       this.#tileElement.style.setProperty(
