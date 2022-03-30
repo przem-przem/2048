@@ -11,7 +11,7 @@
 
 ## Summary
 
-This project is my implementation of "2048" - popular sliding tile puzzle game. The logic built with the help of Web Dev Simplified video.
+This project is my implementation of "2048" - popular sliding tile puzzle game. The logic was built based on the Web Dev Simplified video.
 
 
 **Intial view:**
@@ -30,6 +30,17 @@ This project is my implementation of "2048" - popular sliding tile puzzle game. 
 The user can personalize the game by choosing grid size and base number:
 
 ![settings board](/docs/settings-board.png)
+
+
+or enable dark mode:
+
+![dark mode layout](/docs/dark-mode-settings-board.png)
+
+![dark mode layout](/docs/dark-mode-gameboard.png)
+
+
+
+
 
 
 choose between sections **Overview**, **Internal Structure** or **Surface Geology** for each planet:
