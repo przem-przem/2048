@@ -27,49 +27,55 @@ This project is my implementation of "2048" - popular sliding tile puzzle game. 
 
 ## Usage
 
-The user can personalize the game by choosing grid size and base number:
+**Game objective**
+
+The aim of the game is to merge tiles with the same values, until you get 2048 number:
+
+![winning board](/docs/winning-board.png)
+
+
+**Customization**
+
+The user can personalize the game by choosing the grid size and base number:
 
 ![settings board](/docs/settings-board.png)
 
 
 or enable dark mode:
 
-![dark mode layout](/docs/dark-mode-settings-board.png)
+![dark mode layout settings board](/docs/dark-mode-settings-board.png)
 
-![dark mode layout](/docs/dark-mode-gameboard.png)
-
-
+![dark mode layout game board ](/docs/dark-mode-gameboard.png)
 
 
+The winning number will differ when you change base number or grid size. For instance, when:
+- the base number is 8 and
+- grid size is 3x3,
+
+the aim of the game is to get 1280 number:
+
+![game board with different settings](/docs/basenumber10_gridsize3x3.png)
 
 
-choose between sections **Overview**, **Internal Structure** or **Surface Geology** for each planet:
+**Failure**
 
-![structure view](/docs/structure-view-tablet.png)
-
-![geology view](/docs/geology-view-tablet.png)
+After every sliding move, the new tile is randomly inserted into remaining unoccupied fields. The game ends in a failure, when there is no more space to insert new tile:
 
 
-or can choose between planets:
+![losing board](/docs/losing-board.png)
 
-![geology view mars](/docs/geology-view-tablet-mars.png)
-
-![structure view neptune](/docs/structure-view-tablet-neptune.png)
-
-For mobile devices, in order to change the planet, the user has to open the hamburger menu at the upper-right and choose the appropriate one:
-
-![hamburger menu mobile](/docs/hamburger-menu-mobile.png)
 
 
 ## Built with
 
 - Semantic HTML5
-- SCSS + Flexbox
+- SCSS + Grid + Flexbox
 - Mobile-first workflow
 - BEM naming convention
 - RWD
-- Vanilla JS
+- Vanilla JS with Classes
+- Parcel
 
 ## Live website
 
-[Here you can test live website](https://przem-przem.github.io/planets/)
+[Here you can test live website](https://przem-przem.github.io/2048/)
