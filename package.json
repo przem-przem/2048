@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/przem-przem/2048#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.4.0",
-    "parcel": "^2.4.0"
+    "@parcel/transformer-sass": "^2.4.1",
+    "parcel": "^2.4.1"
   }
 }
