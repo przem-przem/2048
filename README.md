@@ -11,7 +11,7 @@
 
 ## Summary
 
-This project is my implementation of "2048" - popular sliding tile puzzle game. The logic was built based on the Web Dev Simplified video [link to the YT channel](https://www.youtube.com/c/WebDevSimplified);
+This project is my implementation of "2048" - popular sliding tile puzzle game. The logic was built based on the [Web Dev Simplified video from Youtube](https://www.youtube.com/c/WebDevSimplified);
 
 
 **Intial view:**
@@ -29,7 +29,7 @@ This project is my implementation of "2048" - popular sliding tile puzzle game. 
 
 **Game objective**
 
-The aim of the game is to merge tiles with the same values, until you get 2048 number:
+The aim of the game is to merge tiles with the same values, to the point of getting to the 2048 number:
 
 ![winning board](/docs/winning-board.png)
 
@@ -41,25 +41,25 @@ The user can personalize the game by choosing the grid size and base number:
 ![settings board](/docs/settings-board.png)
 
 
-or enable dark mode:
+or enabling dark mode:
 
 ![dark mode layout settings board](/docs/dark-mode-settings-board.png)
 
 ![dark mode layout game board ](/docs/dark-mode-gameboard.png)
 
 
-The winning number will differ when you change base number or grid size. For instance, when:
+The winning number will differ depending on the base number and grid size. For instance, when:
 - the base number is 8 and
 - grid size is 3x3,
 
-the aim of the game is to get 1280 number:
+the aim of the game is getting to the 1280 number:
 
 ![game board with different settings](/docs/basenumber10_gridsize3x3.png)
 
 
 **Failure**
 
-After every sliding move, the new tile is randomly inserted into remaining unoccupied fields. The game ends in a failure, when there is no more space to insert new tile:
+After every sliding move, the new tile is randomly inserted into remaining unoccupied fields. The game ends in a failure, when there is no more space left to insert a new tile:
 
 
 ![losing board](/docs/losing-board.png)
